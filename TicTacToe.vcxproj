@@ -147,7 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameFunctions.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\Board3.txt" />
