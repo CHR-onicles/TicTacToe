@@ -15,7 +15,7 @@ that location.
 <img src = "images/board6.jpg" width = 700>
 
 ## POSSIBLE UPDATES
-- Let players play multiple times without exiting
+- Let players play multiple times without exiting(and add win ratio and stuff)
 - Allow user to play against "bot"
 - Create a level system 
 
