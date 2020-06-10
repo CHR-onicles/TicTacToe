@@ -1,3 +1,8 @@
+/*****************************************
+*Author: CHR-onicles
+*Date: 10/06/2020 00:30GMT
+*****************************************/
+
 #include <iostream>
 #include "GameFunctions.h"
 #include "Utilities.h"

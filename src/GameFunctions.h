@@ -80,7 +80,7 @@ void initialization() {
 	ifs.close();
 
 	do {
-		std::cout << "\n\nWhich would you like to play with? [1/2/3/4]: " << std::endl;
+		std::cout << "\n\nWhich would you like to play with? [1/2/3/4]: ";
 		std::cin >> choice;
 		if (choice > 0 && choice < 5) {
 			//display board
