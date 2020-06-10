@@ -1,13 +1,13 @@
 #include "GameFunctions.h"
-#define NOMINMAX //to fix problems with windows.h and ::max()
+#include "Utilities.h"
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <fstream>
 #include <cctype> //toupper(),tolower()
-#include <Windows.h> //for copyright symbol
-#include "Utilities.h"
 #include <limits> //cin.ignore()
+
+
 
 
 //Initializing Global Variables
@@ -40,6 +40,12 @@ void playerToggle() {
 *Description: Displays splash Screen loaded from file
 ===================================================*/
 void initialization() {
+	//change console colour to aqua if on windows
+	//still looking for linux equivalent
+#ifdef _WIN32
+	system("color 0b");
+#endif // _WIN32
+
 	delayTimer(5000);
 	std::ifstream ifs{ "Splash.txt" };
 	if (!ifs) {
@@ -55,13 +61,13 @@ void initialization() {
 	}
 	delayTimer(2000);
 
-	SetConsoleOutputCP(1252); //to show copyright symbol correctly
-	std::cout << "\n\t\t\t\t" << "Powered by CHR-onicles©" << std::endl;
+	//SetConsoleOutputCP(1252); //to show copyright symbol correctly
+	std::cout << "\n\t\t\t\t" << "Powered by CHR-onicles" << std::endl;
 	delayTimer(5000);
 	ifs.close();
 
 	//showcase all boards
-	system("cls");
+	cls();
 	char read{};
 	bool valid{ false };
 	int choice{};
@@ -69,7 +75,7 @@ void initialization() {
 	std::cout << "Check these guys out!\n\n" << std::endl;
 	delayTimer(3000);
 	for (int i{ 0 }; i <= 3; ++i) {
-		//system("cls");
+		//cls();
 		std::ifstream ifs{ boardnames[i].c_str() };
 		while (ifs.get(read)) {
 			std::cout << read;
@@ -84,7 +90,7 @@ void initialization() {
 		std::cin >> choice;
 		if (choice > 0 && choice < 5) {
 			//display board
-			system("cls");
+			cls();
 			std::fstream ifs2{ boardnames[choice - 1].c_str(),std::ios::in | std::ios::out };
 			if (!ifs2) {
 				std::cerr << "Error loading board" << std::endl;
@@ -141,7 +147,7 @@ void initialization() {
 *Description: displays current state of game board.
 ===================================================*/
 void displayBoard() {
-	system("cls");
+	cls();
 	std::fstream fs("temp.txt", std::ios::in);
 	if (!fs) {
 		std::cerr << "Error displaying temp board" << std::endl;

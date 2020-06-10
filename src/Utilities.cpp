@@ -4,6 +4,22 @@
 #include <chrono> //for sleep timer
 #include <thread> //for sleep timer
 
+
+/*===================================================
+*Function: cls()
+*Description: To clear the screen based on platform
+===================================================*/
+#ifdef __linux__
+void cls() {
+	system("clear");
+}
+
+#elif _WIN32
+void cls() {
+	system("cls");
+}
+#endif
+
 /*===================================================
 *Function: delayTimer()
 *Description: For delays in startup screen causing a
