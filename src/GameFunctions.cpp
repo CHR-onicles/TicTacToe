@@ -7,23 +7,18 @@
 #include <cctype> //toupper(),tolower()
 #include <limits> //cin.ignore()
 
-
-
-
 //Initializing Global Variables
 char player{ 'X' };
-
 
 //locations of fields(in bytes) in game board
 	//in order to access them directly and
 	//not loop through the whole board
 	//which will make it difficult implementing
 	//some game logic
-__int64 f1{};
-__int64 f4{};
-__int64 f7{};
-__int64 adjacentdif{};//difference between adjacent numbers i.e 1 and 2 for every board
-
+long long f1{};
+long long f4{};
+long long f7{};
+long long adjacentdif{};//difference between adjacent numbers i.e 1 and 2 for every board
 
 /*===================================================
 *Function: playerToggle()
@@ -72,7 +67,7 @@ void initialization() {
 	bool valid{ false };
 	int choice{};
 	std::string boardnames[] = { "board3.txt","board4.txt","board5.txt","board6.txt" };
-	std::cout << "Check these guys out!\n\n" << std::endl;
+	std::cout << "\tCheck these guys out!\n\n" << std::endl;
 	delayTimer(3000);
 	for (int i{ 0 }; i <= 3; ++i) {
 		//cls();
@@ -141,7 +136,6 @@ void initialization() {
 	} while (!valid);
 }
 
-
 /*===================================================
 *Function: displayBoard()
 *Description: displays current state of game board.
@@ -168,7 +162,7 @@ void displayBoard() {
 *Description: Inserts player's character into game
 			  board.
 ===================================================*/
-bool modifyBoard(char player, __int64 location) {
+bool modifyBoard(char player, long long location) {
 	std::fstream fs{ "temp.txt",std::ios::in | std::ios::out };
 	if (!fs) {
 		std::cerr << "Error loading board to be modified" << std::endl;

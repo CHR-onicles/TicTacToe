@@ -6,7 +6,7 @@ void initialization();
 
 void displayBoard();
 
-bool modifyBoard(char player, __int64 location);
+bool modifyBoard(char player, long long location);
 
 char checkForWinner();
 

@@ -10,7 +10,6 @@
 int main() {
 	//system("color 0b"); //aqua effect on black background
 	initialization();
-	char winner{};
 	int numOfMoves{ 0 };
 
 	do {
