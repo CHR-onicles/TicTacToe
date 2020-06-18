@@ -6,7 +6,7 @@ I bring you Tripple T... made with custom game board designs you can choose from
 ## INFO
 - This program uses file handling, the original game board is copied into a temporary text file which is modified as you play
 and deleted when the game is over.
-- The numbers serve as placeholders and their locations are extracted and saved to memory to be used when the user points to
+- The numbers on the board serve as placeholders and their locations are extracted and saved to memory to be used when the user points to
 that location.
 
 ## SCREENSHOTS
