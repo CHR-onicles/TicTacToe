@@ -1,4 +1,4 @@
-# TIC_TAC_FREAKING_TOE
+# TIC_TAC_TOE
 
 I bring you Tripple T... made with custom game board designs you can choose from...enjoy:)
 <p>Oh and I added a splash screen to make it cooler XD</p>
