@@ -167,8 +167,10 @@
     <ClInclude Include="src\Utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="images\board3.jpg" />
     <Image Include="images\board5.jpg" />
     <Image Include="images\board6.jpg" />
+    <Image Include="images\TicTacToe_on_Kali.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

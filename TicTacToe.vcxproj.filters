@@ -51,5 +51,11 @@
     <Image Include="images\board6.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="images\TicTacToe_on_Kali.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\board3.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

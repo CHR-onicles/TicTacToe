@@ -21,5 +21,7 @@ that location.
 - Create a level system 
 
 ## UPDATE LOG
-- Linux users wont have to worry about system() commands(added conditional compilation to know which system() command
-to run based on platform)
+- Made compatible with linux, you should have a clean build, even running from terminal
+
+## LINUX
+<img src = "images/TicTacToe_on_Kali.jpg" width = 700>
