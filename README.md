@@ -22,4 +22,4 @@ that location.
 
 ## UPDATE LOG
 - Linux users wont have to worry about system() commands(added conditional compilation to know which system() command
-to run based on platform)
+to run based on platform).
