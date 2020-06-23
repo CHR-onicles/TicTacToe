@@ -21,12 +21,7 @@ that location.
 - Create a level system 
 
 ## UPDATE LOG
-<<<<<<< HEAD
-- Made compatible with linux, you should have a clean build, even running from terminal
+- Made compatible with linux, you should have a clean build, even running raw from terminal
 
 ## LINUX
 <img src = "images/TicTacToe_on_Kali.jpg" width = 700>
-=======
-- Linux users wont have to worry about system() commands(added conditional compilation to know which system() command
-to run based on platform).
->>>>>>> 3fa7c9c5c31e18c1c4d4317024b7f1498b666ada
