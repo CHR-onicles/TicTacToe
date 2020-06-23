@@ -1,7 +1,7 @@
 # TIC_TAC_TOE
 
 I bring you Tripple T... made with custom game board designs you can choose from...enjoy:)
-<p>Oh and I added a splash screen to make it cooler XD</p>
+<p>Oh and I added a splash screen because why not XD</p>
 
 ## INFO
 - This program uses file handling, the original game board is copied into a temporary text file which is modified as you play
