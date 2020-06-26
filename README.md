@@ -15,7 +15,6 @@ that location.
 <img src = "images/board6.jpg" width = 700>
 
 ## POSSIBLE UPDATES
-- Replace windows-specific commands with general commands that can run cross-platform
 - Let players play multiple times without exiting(and add win ratio and stuff)
 - Allow user to play against "bot"
 - Create a level system 
