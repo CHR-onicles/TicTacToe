@@ -21,6 +21,11 @@ void Game::cls() {
 void Game::cls() {
 	system("cls");
 }
+
+#elif __unix__
+void Game::cls() {
+	system("clear");
+}
 #endif
 
 /*===================================================
