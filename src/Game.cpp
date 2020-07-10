@@ -12,7 +12,7 @@
 *Function: cls()
 *Description: To clear the screen based on platform
 ===================================================*/
-#ifdef __linux__ || def __unix__
+#if defined LINUX | defined UNIX
 void Game::cls() {
 	system("clear");
 }
