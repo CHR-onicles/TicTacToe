@@ -1,40 +1,53 @@
-#include "GameFunctions.h"
-#include "Utilities.h"
+#include "Game.h"
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <fstream>
 #include <cctype> //toupper(),tolower()
 #include <limits> //cin.ignore()
-
-//Initializing Global Variables
-char player{ 'X' };
-
-//locations of fields(in bytes) in game board
-	//in order to access them directly and
-	//not loop through the whole board
-	//which will make it difficult implementing
-	//some game logic
-long long f1{};
-long long f4{};
-long long f7{};
-long long adjacentdif{};//difference between adjacent numbers i.e 1 and 2 for every board
+#include <fstream> //for remove()
+#include <chrono> //for sleep timer
+#include <thread> //for sleep time
 
 /*===================================================
-*Function: playerToggle()
-*Description: To toggle player turns.
+*Function: cls()
+*Description: To clear the screen based on platform
 ===================================================*/
-void playerToggle() {
-	if (player == 'X')
-		player = 'O';
-	else player = 'X';
+#ifdef __linux__
+void Game::cls() {
+	system("clear");
+}
+
+#elif _WIN32
+void Game::cls() {
+	system("cls");
+}
+#endif
+
+/*===================================================
+*Function: delayTimer()
+*Description: For delays in startup screen causing a
+			 kind of loading effect.
+===================================================*/
+void Game::delayTimer(int durationInMillisecs) {
+	std::chrono::milliseconds dura(durationInMillisecs);
+	std::this_thread::sleep_for(dura);
+}
+
+/*===================================================
+*Function: removeTempFile()
+*Description: Deletes the temporary file the game was
+			  running on.
+===================================================*/
+void Game::removeTempFile() {
+	if (remove("temp.txt") != 0)
+		std::cerr << "\nError removing temp file" << std::endl;
 }
 
 /*===================================================
 *Function: initialization()
 *Description: Displays splash Screen loaded from file
 ===================================================*/
-void initialization() {
+void Game::initialization() {
 	//change console colour to aqua if on windows
 	//still looking for linux equivalent
 #ifdef _WIN32
@@ -109,13 +122,13 @@ void initialization() {
 				counter++;
 				std::cout << read;
 				if (read == '1')
-					f1 = counter;
+					m_f1 = counter;
 				if (read == '2')
-					adjacentdif = counter - f1;
+					m_adjacentdif = counter - m_f1;
 				if (read == '4')
-					f4 = counter;
+					m_f4 = counter;
 				if (read == '7')
-					f7 = counter;
+					m_f7 = counter;
 			}
 
 			//Game board done displaying
@@ -140,7 +153,7 @@ void initialization() {
 *Function: displayBoard()
 *Description: displays current state of game board.
 ===================================================*/
-void displayBoard() {
+void Game::displayBoard() {
 	cls();
 	std::fstream fs("temp.txt", std::ios::in);
 	if (!fs) {
@@ -158,11 +171,87 @@ void displayBoard() {
 }
 
 /*===================================================
+*Function: userInput()
+*Description: Asks user for input
+===================================================*/
+void Game::userInput() {
+	char input;
+
+	bool inputValid{ false };
+	do {
+		std::cout << "\nPlayer: " << m_player << ", Enter the number of the field to be occupied: ";
+		std::cin >> input;
+		switch (input) {
+		case '1':
+			if (modifyBoard(m_player, m_f1))
+				inputValid = true;
+			break;
+
+		case '2':
+			if (modifyBoard(m_player, m_f1 + m_adjacentdif))
+				inputValid = true;
+			break;
+
+		case '3':
+			std::cout << "Entered 3" << std::endl;
+			if (modifyBoard(m_player, m_f1 + (m_adjacentdif * 2)))
+				inputValid = true;
+			break;
+
+		case '4':
+			if (modifyBoard(m_player, m_f4))
+				inputValid = true;
+
+			break;
+		case '5':
+			if (modifyBoard(m_player, m_f4 + m_adjacentdif))
+				inputValid = true;
+			break;
+
+		case '6':
+			if (modifyBoard(m_player, m_f4 + (m_adjacentdif * 2)))
+				inputValid = true;
+			break;
+
+		case '7':
+			if (modifyBoard(m_player, m_f7))
+				inputValid = true;
+			break;
+
+		case '8':
+			if (modifyBoard(m_player, m_f7 + m_adjacentdif))
+				inputValid = true;
+			break;
+
+		case '9':
+			if (modifyBoard(m_player, m_f7 + (m_adjacentdif * 2)))
+				inputValid = true;
+			break;
+
+		default:
+			std::cerr << "Invalid option" << std::endl;
+			inputValid = false;
+			break;
+		}
+	} while (!inputValid);
+}
+
+/*===================================================
+*Function: playerToggle()
+*Description: To toggle player turns.
+===================================================*/
+void Game::playerToggle() {
+	if (m_player == 'X')
+		m_player = 'O';
+	else m_player = 'X';
+}
+
+/*===================================================
 *Function: modifyBoard()
 *Description: Inserts player's character into game
 			  board.
 ===================================================*/
-bool modifyBoard(char player, long long location) {
+bool Game::modifyBoard(char player, long long location) {
 	std::fstream fs{ "temp.txt",std::ios::in | std::ios::out };
 	if (!fs) {
 		std::cerr << "Error loading board to be modified" << std::endl;
@@ -198,77 +287,11 @@ bool modifyBoard(char player, long long location) {
 }
 
 /*===================================================
-*Function: userInput()
-*Description: Asks user for input
-===================================================*/
-void userInput() {
-	char input;
-
-	bool inputValid{ false };
-	do {
-		std::cout << "\nPlayer: " << player << ", Enter the number of the field to be occupied: ";
-		std::cin >> input;
-		switch (input) {
-		case '1':
-			if (modifyBoard(player, f1))
-				inputValid = true;
-			break;
-
-		case '2':
-			if (modifyBoard(player, f1 + adjacentdif))
-				inputValid = true;
-			break;
-
-		case '3':
-			std::cout << "Entered 3" << std::endl;
-			if (modifyBoard(player, f1 + (adjacentdif * 2)))
-				inputValid = true;
-			break;
-
-		case '4':
-			if (modifyBoard(player, f4))
-				inputValid = true;
-
-			break;
-		case '5':
-			if (modifyBoard(player, f4 + adjacentdif))
-				inputValid = true;
-			break;
-
-		case '6':
-			if (modifyBoard(player, f4 + (adjacentdif * 2)))
-				inputValid = true;
-			break;
-
-		case '7':
-			if (modifyBoard(player, f7))
-				inputValid = true;
-			break;
-
-		case '8':
-			if (modifyBoard(player, f7 + adjacentdif))
-				inputValid = true;
-			break;
-
-		case '9':
-			if (modifyBoard(player, f7 + (adjacentdif * 2)))
-				inputValid = true;
-			break;
-
-		default:
-			std::cerr << "Invalid option" << std::endl;
-			inputValid = false;
-			break;
-		}
-	} while (!inputValid);
-}
-
-/*===================================================
 *Function: checkForWinner()
 *Description: Checks gameboard if there's a winner or
 			  a draw.
 ===================================================*/
-char checkForWinner() {
+char Game::checkForWinner() {
 	char read1{};
 	char read2{};
 	char read3{};
@@ -281,84 +304,84 @@ char checkForWinner() {
 	}
 
 	//checking horizontally on 1st row
-	ifs.seekg(f1 - 1, std::ios::beg);
+	ifs.seekg(m_f1 - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f1 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f1 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f1 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f1 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//checking horizontally on 2nd row
-	ifs.seekg(f4 - 1, std::ios::beg);
+	ifs.seekg(m_f4 - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f4 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f4 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f4 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f4 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//checking horizontally on 3rd row
-	ifs.seekg(f7 - 1, std::ios::beg);
+	ifs.seekg(m_f7 - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f7 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f7 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f7 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f7 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//checking vertically on 1st column
-	ifs.seekg(f1 - 1, std::ios::beg);
+	ifs.seekg(m_f1 - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f4 - 1, std::ios::beg);
+	ifs.seekg(m_f4 - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f7 - 1, std::ios::beg);
+	ifs.seekg(m_f7 - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//cheking vertically on 2nd column
-	ifs.seekg(f1 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f1 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f4 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f4 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f7 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f7 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//checking vertically on 3rd column
-	ifs.seekg(f1 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f1 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f4 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f4 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f7 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f7 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//checking left diagonal
-	ifs.seekg(f1 - 1, std::ios::beg);
+	ifs.seekg(m_f1 - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f4 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f4 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f7 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f7 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//checking right diagonal
-	ifs.seekg(f1 + (adjacentdif * 2) - 1, std::ios::beg);
+	ifs.seekg(m_f1 + (m_adjacentdif * 2) - 1, std::ios::beg);
 	ifs.get(read1);
-	ifs.seekg(f4 + adjacentdif - 1, std::ios::beg);
+	ifs.seekg(m_f4 + m_adjacentdif - 1, std::ios::beg);
 	ifs.get(read2);
-	ifs.seekg(f7 - 1, std::ios::beg);
+	ifs.seekg(m_f7 - 1, std::ios::beg);
 	ifs.get(read3);
 	if (read1 == read2 && read2 == read3)
-		return player;
+		return m_player;
 
 	//else its a draw
 	return 'd';

@@ -1,38 +1,37 @@
 /*****************************************
 *Author: CHR-onicles
 *Date: 10/06/2020 00:30GMT
+*Revised date: 10/07/2020 16:05GMT
 *****************************************/
 
 #include <iostream>
-#include "GameFunctions.h"
-#include "Utilities.h"
+#include "Game.h"
 
 int main() {
-	//system("color 0b"); //aqua effect on black background
-	initialization();
+	Game tictac; //creating Game object
+	tictac.initialization();
 	int numOfMoves{ 0 };
 
 	do {
-		userInput();
-		displayBoard();
+		tictac.userInput();
+		tictac.displayBoard();
 		numOfMoves++;
-		if (checkForWinner() == 'X') {
+		if (tictac.checkForWinner() == 'X') {
 			std::cout << "\nGAME OVER! Player X wins!!" << std::endl;
 			break;
 		}
-		else if (checkForWinner() == 'O') {
+		else if (tictac.checkForWinner() == 'O') {
 			std::cout << "\nGAME OVER! Player O wins!!" << std::endl;
 			break;
 		}
-		else if (checkForWinner() == 'd' && numOfMoves == 9) {
+		else if (tictac.checkForWinner() == 'd' && numOfMoves == 9) {
 			std::cout << "\nGAME OVER! It's a DRAW." << std::endl;
 			break;
 		}
-		playerToggle();
-		
+		tictac.playerToggle();
 	} while (numOfMoves != 9);
 
-	removeTempFile();
+	tictac.removeTempFile();
 	std::cout << "\n";
 	return 0;
 }
