@@ -20,7 +20,7 @@ that location.
 - Create a level system 
 
 ## UPDATE LOG
-- v10.07.2020 restructured into OO, and got rid of extra files (Got rid of C-style stuff)
+- v10.07.2020 restructured into OO(Got rid of C-style stuff), and got rid of extra files 
 - Made compatible with linux, you should have a clean build, even running raw from terminal
 
 ## LINUX
