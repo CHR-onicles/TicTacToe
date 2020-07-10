@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <cctype> //toupper(),tolower()
 #include <limits> //cin.ignore()
-#include <fstream> //for remove()
+#include <fstream> //for remove(), getline()
 #include <chrono> //for sleep timer
 #include <thread> //for sleep time
 
@@ -24,30 +24,10 @@ void Game::cls() {
 #endif
 
 /*===================================================
-*Function: delayTimer()
-*Description: For delays in startup screen causing a
-			 kind of loading effect.
-===================================================*/
-void Game::delayTimer(int durationInMillisecs) {
-	std::chrono::milliseconds dura(durationInMillisecs);
-	std::this_thread::sleep_for(dura);
-}
-
-/*===================================================
-*Function: removeTempFile()
-*Description: Deletes the temporary file the game was
-			  running on.
-===================================================*/
-void Game::removeTempFile() {
-	if (remove("temp.txt") != 0)
-		std::cerr << "\nError removing temp file" << std::endl;
-}
-
-/*===================================================
-*Function: initialization()
+*Function: Game constructor
 *Description: Displays splash Screen loaded from file
 ===================================================*/
-void Game::initialization() {
+Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	//change console colour to aqua if on windows
 	//still looking for linux equivalent
 #ifdef _WIN32
@@ -147,6 +127,26 @@ void Game::initialization() {
 			std::cin.clear();
 		}
 	} while (!valid);
+}
+
+/*===================================================
+*Function: Game destructor
+*Description: Deletes the temporary file the game was
+			  running on.
+===================================================*/
+Game::~Game() {
+	if (remove("temp.txt") != 0)
+		std::cerr << "\nError removing temp file" << std::endl;
+}
+
+/*===================================================
+*Function: delayTimer()
+*Description: For delays in startup screen causing a
+			 kind of loading effect.
+===================================================*/
+void Game::delayTimer(int durationInMillisecs) {
+	std::chrono::milliseconds dura(durationInMillisecs);
+	std::this_thread::sleep_for(dura);
 }
 
 /*===================================================

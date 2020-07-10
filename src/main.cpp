@@ -9,7 +9,6 @@
 
 int main() {
 	Game tictac; //creating Game object
-	tictac.initialization();
 	int numOfMoves{ 0 };
 
 	do {
@@ -31,7 +30,6 @@ int main() {
 		tictac.playerToggle();
 	} while (numOfMoves != 9);
 
-	tictac.removeTempFile();
 	std::cout << "\n";
 	return 0;
 }

@@ -3,21 +3,24 @@
 class Game {
 private:
 	//member variables with "m_" prefix
-	char m_player{ 'X' };
+	char m_player;
 
 	//locations of fields(in bytes) in game board
 	//in order to access them directly and
 	//not loop through the whole board
 	//which will make it difficult implementing
 	//some game logic
-	long long m_f1{};
-	long long m_f4{};
-	long long m_f7{};
-	long long m_adjacentdif{};//difference between adjacent numbers i.e 1 and 2 for every board
+	long long m_f1;
+	long long m_f4;
+	long long m_f7;
+	long long m_adjacentdif;//difference between adjacent number-placeholders i.e 1 and 2 for every board
+
+public:
+	//constructor,destructor
+	Game();
+	~Game();
 
 	//methods
-public:
-	void initialization();
 	void displayBoard();
 	void userInput();
 	void playerToggle();
@@ -26,6 +29,5 @@ public:
 
 	//Utilities
 	void delayTimer(int durationInMillisecs);
-	void removeTempFile();
 	void cls();
 };
