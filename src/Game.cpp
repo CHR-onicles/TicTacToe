@@ -12,7 +12,7 @@
 *Function: cls()
 *Description: To clear the screen based on platform
 ===================================================*/
-#if defined __linux__ | defined __unix__
+#if defined (__linux__) || defined (__unix__)
 void Game::cls() {
 	system("clear");
 }
@@ -193,7 +193,6 @@ void Game::userInput() {
 			break;
 
 		case '3':
-			std::cout << "Entered 3" << std::endl;
 			if (modifyBoard(m_player, m_f1 + (m_adjacentdif * 2)))
 				inputValid = true;
 			break;
@@ -201,8 +200,8 @@ void Game::userInput() {
 		case '4':
 			if (modifyBoard(m_player, m_f4))
 				inputValid = true;
-
 			break;
+
 		case '5':
 			if (modifyBoard(m_player, m_f4 + m_adjacentdif))
 				inputValid = true;
