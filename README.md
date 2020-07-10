@@ -14,14 +14,14 @@ that location.
 <img src = "images/board5.jpg" width = 700>
 <img src = "images/board6.jpg" width = 700>
 
-## POSSIBLE UPDATES
-- Let players play multiple times without exiting(and add win ratio and stuff)
-- Allow user to play against "bot"
-- Create a level system 
-
 ## UPDATE LOG
 - v10.07.2020 restructured into OO(Got rid of C-style stuff), and got rid of extra files 
 - Made compatible with linux, you should have a clean build, even running raw from terminal
 
 ## LINUX
 <img src = "images/TicTacToe_on_Kali.jpg" width = 700>
+
+## POSSIBLE UPDATES
+- Let players play multiple times without exiting(and add win ratio and stuff)
+- Allow user to play against "bot"
+- Create a level system 
