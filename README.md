@@ -10,9 +10,9 @@ and deleted when the game is over.
 that location.
 
 ## SCREENSHOTS
-<img src = "images/board3.jpg" width = 700>
-<img src = "images/board5.jpg" width = 700>
-<img src = "images/board6.jpg" width = 700>
+<img src = "images/BBoard3.jpg" width = 700>
+<img src = "images/BBoard5.jpg" width = 700>
+<img src = "images/BBoard6.jpg" width = 700>
 
 ## UPDATE LOG
 - v10.07.2020 restructured into OO(Got rid of C-style stuff), and got rid of extra files 

@@ -165,9 +165,9 @@
     <ClInclude Include="src\Game.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="images\Board3.jpg" />
-    <Image Include="images\board5.jpg" />
-    <Image Include="images\board6.jpg" />
+    <Image Include="images\BBoard3.jpg" />
+    <Image Include="images\BBoard5.jpg" />
+    <Image Include="images\BBoard6.jpg" />
     <Image Include="images\TicTacToe_on_Kali.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
