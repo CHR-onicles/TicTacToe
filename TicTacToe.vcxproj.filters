@@ -27,8 +27,8 @@
     <Text Include="src\board5.txt" />
     <Text Include="src\board6.txt" />
     <Text Include="src\Splash.txt" />
-    <Text Include="src\Board4.txt" />
-    <Text Include="src\Board3.txt" />
+    <Text Include="src\board3.txt" />
+    <Text Include="src\board4.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -48,7 +48,7 @@
     <Image Include="images\TicTacToe_on_Kali.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="images\board3.jpg">
+    <Image Include="images\Board3.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
