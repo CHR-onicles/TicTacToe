@@ -8,8 +8,7 @@ private:
 	//locations of fields(in bytes) in game board
 	//in order to access them directly and
 	//not loop through the whole board
-	//which will make it difficult implementing
-	//some game logic
+	//which will make it difficult implementing some game logic
 	long long m_f1;
 	long long m_f4;
 	long long m_f7;
