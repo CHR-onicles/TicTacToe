@@ -77,7 +77,7 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 		std::cout << "\n\nWhich would you like to play with? [1/2/3/4]: ";
 		std::cin >> choice;
 		if (choice > 0 && choice < 5) {
-			//display board
+			//display user chosen board
 			cls();
 			std::fstream ifs2{ boardnames[choice - 1].c_str(),std::ios::in | std::ios::out };
 			if (!ifs2) {
@@ -87,7 +87,6 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 
 			//temp file is going to be modified as the game goes on
 			//and deleted at the end of game
-			//char read{};
 			std::fstream fs{ "temp.txt", std::ios::out | std::ios::binary };
 			while (ifs2.get(read)) {
 				fs.put(read);
@@ -116,13 +115,11 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 			std::cout << "\tPlayer 2: 'O'" << std::endl;
 
 			ifs2.close();
-			//fs.close();
 			ipt.close();
 			valid = true;
 		}
 		else {
 			std::cerr << "Invalid option" << std::endl;
-
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cin.clear();
 		}
@@ -175,7 +172,7 @@ void Game::displayBoard() {
 *Description: Asks user for input
 ===================================================*/
 void Game::userInput() {
-	char input;
+	char input{};
 
 	bool inputValid{ false };
 	do {
@@ -258,17 +255,18 @@ bool Game::modifyBoard(char player, long long location) {
 	}
 	char read1{};
 
-	//double location{};
-	//while (fs.get(read)) {
-	//	if (read == index) {
-	//		location = fs.tellp();
-	//		break;
-	//	}
-	//}
-	//fs.clear(); //clear state of file - EOF
-	//fs.seekp(location - 1, std::ios::beg);
-	//fs.put(player);
-	//fs.close();
+	/*double location{};
+		while (fs.get(read)) {
+			if (read == index) {
+			location = fs.tellp();
+			break;
+			}
+		}
+		fs.clear(); //clear state of file - EOF
+		fs.seekp(location - 1, std::ios::beg);
+		fs.put(player);
+		fs.close();
+	*/
 	fs.seekg(location - 1, std::ios::beg);
 	fs.get(read1);
 	if (isdigit(read1)) {
