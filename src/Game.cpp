@@ -7,6 +7,7 @@
 #include <fstream> //for remove(), getline()
 #include <chrono> //for sleep timer
 #include <thread> //for sleep time
+#include <gsl/gsl> //for gsl::index
 
 /*===================================================
 *Function: cls()
@@ -62,8 +63,7 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	std::string boardnames[] = { "board3.txt","board4.txt","board5.txt","board6.txt" };
 	std::cout << "\tCheck these guys out!\n\n" << std::endl;
 	delayTimer(3000);
-	for (int i{ 0 }; i <= 3; ++i) {
-		//cls();
+	for (gsl::index i{ 0 }; i <= 3; ++i) {
 		std::ifstream ifs{ boardnames[i].c_str() };
 		while (ifs.get(read)) {
 			std::cout << read;
