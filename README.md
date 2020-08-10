@@ -15,12 +15,9 @@ that location.
 <img src = "images/BBoard6.jpg" width = 700>
 
 ## UPDATE LOG
-- v10.08.2020 introduced AI to play against (extremely easy AI)
+- v10.08.2020 introduced AI to play against (extremely easy AI) and  players can play multiple games before exiting.
 - v10.07.2020 restructured into OO(Got rid of C-style stuff), and got rid of extra files 
 - Made compatible with linux, you should have a clean build, even running raw from terminal
 
 ## LINUX
 <img src = "images/TicTacToe_on_Kali.jpg" width = 700>
-
-## POSSIBLE UPDATES
-- Let players play multiple times without exiting.

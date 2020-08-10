@@ -29,8 +29,7 @@ public:
 	bool modifyBoard(char player, long long location);
 	char checkForWinner();
 	void computerTurn();
-	void finalCheck(int numOfMoves);
-	void playAgain();
+	bool finalCheck(int numOfMoves);
 
 	//Utilities
 	void delayTimer(int durationInMillisecs);

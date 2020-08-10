@@ -60,22 +60,22 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 		ifs.close();
 		cls();
 	}
-	 if(numOfTimesRan >= 0){
+	if (numOfTimesRan >= 0) {
 		//showcase all boards
-		
+		cls();
 		char read{};
 		bool valid{ false };
 		int choice{};
 		std::string boardnames[] = { "board1.txt","board2.txt","board3.txt","board4.txt","board5.txt","board6.txt" };
 		std::cout << "\tMake a choice from custom game board designs:\n\n" << std::endl;
-		delayTimer(3000);
+		if (numOfTimesRan == 0) delayTimer(3000);
 		for (gsl::index i{ 0 }; i <= 5; ++i) {
 			std::ifstream ifs{ boardnames[i].c_str() };
 			while (ifs.get(read)) {
 				std::cout << read;
 			}
 			std::cout << "\n\n\n";
-			delayTimer(3000);
+			if (numOfTimesRan == 0) delayTimer(3000);
 		}
 		ifs.close();
 
@@ -130,7 +130,8 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 				std::cin.clear();
 			}
 		} while (!valid);
-	}	numOfTimesRan++;
+	}
+	numOfTimesRan++;
 }
 
 /*===================================================
@@ -254,97 +255,96 @@ void Game::playerToggle() {
 *Description: Acts as AI to be played against.
 ===================================================*/
 void Game::computerTurn() {
-		int computerChoice{ (rand() % 9) + 1 };
-		bool inputValid{ false };
-		
-		Check: switch (computerChoice) {
-			case 1:
-				if (modifyBoard(m_player, m_f1))
-					std::cout << "Computer plays 1." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+	int computerChoice{ (rand() % 9) + 1 };
+	bool inputValid{ false };
 
-			case 2:
-				if (modifyBoard(m_player, m_f1 + m_adjacentdif))
-				std::cout << "Computer plays 2." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+Check: switch (computerChoice) {
+case 1:
+	if (modifyBoard(m_player, m_f1))
+		std::cout << "Computer plays 1." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			case 3:
-				if (modifyBoard(m_player, m_f1 + (m_adjacentdif * 2)))
-				std::cout << "Computer plays 3." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+case 2:
+	if (modifyBoard(m_player, m_f1 + m_adjacentdif))
+		std::cout << "Computer plays 2." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			case 4:
-				if (modifyBoard(m_player, m_f4))
-				std::cout << "Computer plays 4." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+case 3:
+	if (modifyBoard(m_player, m_f1 + (m_adjacentdif * 2)))
+		std::cout << "Computer plays 3." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			case 5:
-				if (modifyBoard(m_player, m_f4 + m_adjacentdif))
-				std::cout << "Computer plays 5." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+case 4:
+	if (modifyBoard(m_player, m_f4))
+		std::cout << "Computer plays 4." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			case 6:
-				if (modifyBoard(m_player, m_f4 + (m_adjacentdif * 2)))
-				std::cout << "Computer plays 6." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+case 5:
+	if (modifyBoard(m_player, m_f4 + m_adjacentdif))
+		std::cout << "Computer plays 5." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			case 7:
-				if (modifyBoard(m_player, m_f7))
-				std::cout << "Computer plays 7." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+case 6:
+	if (modifyBoard(m_player, m_f4 + (m_adjacentdif * 2)))
+		std::cout << "Computer plays 6." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			case 8:
-				if (modifyBoard(m_player, m_f7 + m_adjacentdif))
-				std::cout << "Computer plays 8." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+case 7:
+	if (modifyBoard(m_player, m_f7))
+		std::cout << "Computer plays 7." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			case 9:
-				if (modifyBoard(m_player, m_f7 + (m_adjacentdif * 2)))
-				std::cout << "Computer plays 9." << std::endl;
-				else {
-					computerChoice = (rand() % 9) + 1;
-					goto Check;
-				}
-			break;
+case 8:
+	if (modifyBoard(m_player, m_f7 + m_adjacentdif))
+		std::cout << "Computer plays 8." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
 
-			default: //Computer won't make input errors
-			break;
-		}
-		delayTimer(1000);
+case 9:
+	if (modifyBoard(m_player, m_f7 + (m_adjacentdif * 2)))
+		std::cout << "Computer plays 9." << std::endl;
+	else {
+		computerChoice = (rand() % 9) + 1;
+		goto Check;
+	}
+	break;
+
+default: //Computer won't make input errors
+	break;
 }
-
+delayTimer(1000);
+}
 
 /*===================================================
 *Function: modifyBoard()
@@ -380,7 +380,7 @@ bool Game::modifyBoard(char player, long long location) {
 		return true;
 	}
 	else if (isalpha(read1)) {
-		if(player == 'X') //show this message to only players
+		if (player == 'X') //show this message to only players
 			std::cerr << "The field is already occupied" << std::endl;
 		fs.close();
 		return false;
@@ -495,20 +495,18 @@ char Game::checkForWinner() {
 			  a draw and displays winning message
 			  accordingly.
 ===================================================*/
-void Game::finalCheck(int numOfMoves) {
+bool Game::finalCheck(int numOfMoves) {
 	if (checkForWinner() == 'X') {
 		std::cout << "\nGAME OVER! Player 1 wins!!" << std::endl;
-		std::cout << numOfTimesRan << std::endl;
-		std::exit(10);
+		return true;
 	}
 	else if (checkForWinner() == 'O') {
 		std::cout << "\nGAME OVER! Computer wins!!" << std::endl;
-		std::cout << numOfTimesRan << std::endl;
-		std::exit(11);
+		return true;
 	}
 	else if (checkForWinner() == 'd' && numOfMoves == 9) {
 		std::cout << "\nGAME OVER! It's a DRAW." << std::endl;
-		std::cout << numOfTimesRan << std::endl;
-		std::exit(12);
+		return true;
 	}
+	return false;
 }
