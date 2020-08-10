@@ -8,6 +8,8 @@
 #include <chrono> //for sleep timer
 #include <thread> //for sleep time
 #include <gsl/gsl> //for gsl::index
+#include <cstdlib> //for rand()
+#include <ctime> // for seeding random value
 
 /*===================================================
 *Function: cls()
@@ -34,27 +36,28 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	system("color 0b");
 #endif // _WIN32
 
-	delayTimer(5000);
-	std::ifstream ifs{ "Splash.txt" };
-	if (!ifs) {
-		std::cerr << "Error loading Splash Screen." << std::endl;
-		return;
-	}
-	std::string line;
-	std::cout << "\n\n\n\n\n\n\n\n";
+	srand(time(NULL));
+	//delayTimer(5000);
+	//std::ifstream ifs{ "Splash.txt" };
+	//if (!ifs) {
+	//	std::cerr << "Error loading Splash Screen." << std::endl;
+	//	return;
+	//}
+	//std::string line;
+	//std::cout << "\n\n\n\n\n\n\n\n";
 
-	while (std::getline(ifs, line)) {
-		delayTimer(155);
-		std::cout << "\t\t\t\t" << line << std::endl;
-	}
-	delayTimer(2000);
+	//while (std::getline(ifs, line)) {
+	//	delayTimer(155);
+	//	std::cout << "\t\t\t\t" << line << std::endl;
+	//}
+	//delayTimer(2000);
 
-	//SetConsoleOutputCP(1252); //to show copyright symbol correctly
-	std::cout << "\n\t\t\t\t" << "Powered by CHR-onicles" << std::endl;
-	delayTimer(5000);
-	ifs.close();
+	////SetConsoleOutputCP(1252); //to show copyright symbol correctly
+	//std::cout << "\n\t\t\t\t" << "Powered by CHR-onicles" << std::endl;
+	//delayTimer(5000);
+	//ifs.close();
 
-	//showcase all boards
+	////showcase all boards
 	cls();
 	char read{};
 	bool valid{ false };
@@ -70,7 +73,7 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 		std::cout << "\n\n\n";
 		delayTimer(3000);
 	}
-	ifs.close();
+	//ifs.close();
 
 	do {
 		std::cout << "\n\nWhich would you like to play with? [1/2/3/4/5/6]: ";
@@ -111,7 +114,7 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 
 			//Game board done displaying
 			std::cout << "\n\tPlayer 1: 'X'" << std::endl;
-			std::cout << "\tPlayer 2: 'O'" << std::endl;
+			std::cout << "\tComputer: 'O'" << std::endl;
 
 			ifs2.close();
 			ipt.close();
@@ -162,7 +165,7 @@ void Game::displayBoard() {
 	}
 
 	std::cout << "\n\tPlayer 1: 'X'" << std::endl;
-	std::cout << "\tPlayer 2: 'O'" << std::endl;
+	std::cout << "\tComputer: 'O'" << std::endl;
 	fs.close();
 }
 
@@ -172,7 +175,6 @@ void Game::displayBoard() {
 ===================================================*/
 void Game::userInput() {
 	char input{};
-
 	bool inputValid{ false };
 	do {
 		std::cout << "\nPlayer: " << m_player << ", Enter the number of the field to be occupied: ";
@@ -241,6 +243,77 @@ void Game::playerToggle() {
 	else m_player = 'X';*/
 	(m_player == 'X') ? m_player = 'O' : m_player = 'X';
 }
+
+/*===================================================
+*Function: computerTurn()
+*Description: Acts as AI to be played against.
+===================================================*/
+void Game::computerTurn() {
+		char computerChoice{ (rand() % 9) + 1 };
+		bool inputValid{ false };
+
+		switch (computerChoice) {
+			case '1':
+				if (modifyBoard(m_player, m_f1))
+				inputValid = true;
+				std::cout << "Computer plays 1." << std::endl;
+			break;
+
+			case '2':
+				if (modifyBoard(m_player, m_f1 + m_adjacentdif))
+				inputValid = true;
+				std::cout << "Computer plays 2." << std::endl;
+			break;
+
+			case '3':
+				if (modifyBoard(m_player, m_f1 + (m_adjacentdif * 2)))
+				inputValid = true;
+				std::cout << "Computer plays 3." << std::endl;
+			break;
+
+			case '4':
+				if (modifyBoard(m_player, m_f4))
+				inputValid = true;
+				std::cout << "Computer plays 4." << std::endl;
+			break;
+
+			case '5':
+				if (modifyBoard(m_player, m_f4 + m_adjacentdif))
+				inputValid = true;
+				std::cout << "Computer plays 5." << std::endl;
+			break;
+
+			case '6':
+				if (modifyBoard(m_player, m_f4 + (m_adjacentdif * 2)))
+				inputValid = true;
+				std::cout << "Computer plays 6." << std::endl;
+			break;
+
+			case '7':
+				if (modifyBoard(m_player, m_f7))
+				inputValid = true;
+				std::cout << "Computer plays 7." << std::endl;
+			break;
+
+			case '8':
+				if (modifyBoard(m_player, m_f7 + m_adjacentdif))
+				inputValid = true;
+				std::cout << "Computer plays 8." << std::endl;
+			break;
+
+			case '9':
+				if (modifyBoard(m_player, m_f7 + (m_adjacentdif * 2)))
+				inputValid = true;
+				std::cout << "Computer plays 9." << std::endl;
+			break;
+
+			default:
+				std::cerr << "Invalid option" << std::endl;
+				inputValid = false;
+			break;
+		} while (!inputValid);
+}
+
 
 /*===================================================
 *Function: modifyBoard()
