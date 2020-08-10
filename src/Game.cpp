@@ -236,9 +236,10 @@ void Game::userInput() {
 *Description: To toggle player turns.
 ===================================================*/
 void Game::playerToggle() {
-	if (m_player == 'X')
+	/*if (m_player == 'X')
 		m_player = 'O';
-	else m_player = 'X';
+	else m_player = 'X';*/
+	(m_player == 'X') ? m_player = 'O' : m_player = 'X';
 }
 
 /*===================================================
