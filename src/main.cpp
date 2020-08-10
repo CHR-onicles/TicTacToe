@@ -13,6 +13,7 @@ int main() {
 
 	do {
 		tictac.userInput();
+		tictac.playerToggle();
 		tictac.computerTurn();
 		tictac.displayBoard();
 		numOfMoves++;
@@ -28,7 +29,7 @@ int main() {
 			std::cout << "\nGAME OVER! It's a DRAW." << std::endl;
 			break;
 		}
-		tictac.playerToggle();
+		
 	} while (numOfMoves != 9);
 
 	std::cout << "\n";

@@ -257,46 +257,55 @@ void Game::computerTurn() {
 			case '1':
 				if (modifyBoard(m_player, m_f1))
 				inputValid = true;
+				std::cout << "Computer plays 1." << std::endl;
 			break;
 
 			case '2':
 				if (modifyBoard(m_player, m_f1 + m_adjacentdif))
 				inputValid = true;
+				std::cout << "Computer plays 2." << std::endl;
 			break;
 
 			case '3':
 				if (modifyBoard(m_player, m_f1 + (m_adjacentdif * 2)))
 				inputValid = true;
+				std::cout << "Computer plays 3." << std::endl;
 			break;
 
 			case '4':
 				if (modifyBoard(m_player, m_f4))
 				inputValid = true;
+				std::cout << "Computer plays 4." << std::endl;
 			break;
 
 			case '5':
 				if (modifyBoard(m_player, m_f4 + m_adjacentdif))
 				inputValid = true;
+				std::cout << "Computer plays 5." << std::endl;
 			break;
 
 			case '6':
 				if (modifyBoard(m_player, m_f4 + (m_adjacentdif * 2)))
 				inputValid = true;
+				std::cout << "Computer plays 6." << std::endl;
 			break;
 
 			case '7':
 				if (modifyBoard(m_player, m_f7))
 				inputValid = true;
+				std::cout << "Computer plays 7." << std::endl;
 			break;
 
 			case '8':
 				if (modifyBoard(m_player, m_f7 + m_adjacentdif))
 				inputValid = true;
+				std::cout << "Computer plays 8." << std::endl;
 			break;
 
 			case '9':
 				if (modifyBoard(m_player, m_f7 + (m_adjacentdif * 2)))
 				inputValid = true;
+				std::cout << "Computer plays 9." << std::endl;
 			break;
 
 			default:
