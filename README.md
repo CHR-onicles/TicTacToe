@@ -23,5 +23,4 @@ that location.
 
 ## POSSIBLE UPDATES
 - Let players play multiple times without exiting(and add win ratio and stuff)
-- Allow user to play against "bot"
-- Create a level system 
+- Allow user to play against AI

@@ -30,7 +30,6 @@ void Game::cls() {
 ===================================================*/
 Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	//change console colour to aqua if on windows
-	//still looking for linux equivalent
 #ifdef _WIN32
 	system("color 0b");
 #endif // _WIN32
@@ -60,10 +59,10 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	char read{};
 	bool valid{ false };
 	int choice{};
-	std::string boardnames[] = { "board3.txt","board4.txt","board5.txt","board6.txt" };
-	std::cout << "\tCheck these guys out!\n\n" << std::endl;
+	std::string boardnames[] = { "board2.txt","board3.txt","board4.txt","board5.txt","board6.txt" };
+	std::cout << "\tMake a choice from custom game board designs:\n\n" << std::endl;
 	delayTimer(3000);
-	for (gsl::index i{ 0 }; i <= 3; ++i) {
+	for (gsl::index i{ 0 }; i <= 4; ++i) {
 		std::ifstream ifs{ boardnames[i].c_str() };
 		while (ifs.get(read)) {
 			std::cout << read;
@@ -74,9 +73,9 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	ifs.close();
 
 	do {
-		std::cout << "\n\nWhich would you like to play with? [1/2/3/4]: ";
+		std::cout << "\n\nWhich would you like to play with? [1/2/3/4/5]: ";
 		std::cin >> choice;
-		if (choice > 0 && choice < 5) {
+		if (choice > 0 && choice < 6) {
 			//display user chosen board
 			cls();
 			std::fstream ifs2{ boardnames[choice - 1].c_str(),std::ios::in | std::ios::out };
