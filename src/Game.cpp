@@ -71,7 +71,7 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 			std::cout << read;
 		}
 		std::cout << "\n\n\n";
-		delayTimer(3000);
+		//delayTimer(3000);
 	}
 	//ifs.close();
 
@@ -249,69 +249,95 @@ void Game::playerToggle() {
 *Description: Acts as AI to be played against.
 ===================================================*/
 void Game::computerTurn() {
-		char computerChoice{ (rand() % 9) + 1 };
+		int computerChoice{ (rand() % 9) + 1 };
 		bool inputValid{ false };
-
-		switch (computerChoice) {
-			case '1':
+		
+		Check: switch (computerChoice) {
+			case 1:
 				if (modifyBoard(m_player, m_f1))
-				inputValid = true;
-				std::cout << "Computer plays 1." << std::endl;
+					std::cout << "Computer plays 1." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '2':
+			case 2:
 				if (modifyBoard(m_player, m_f1 + m_adjacentdif))
-				inputValid = true;
 				std::cout << "Computer plays 2." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '3':
+			case 3:
 				if (modifyBoard(m_player, m_f1 + (m_adjacentdif * 2)))
-				inputValid = true;
 				std::cout << "Computer plays 3." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '4':
+			case 4:
 				if (modifyBoard(m_player, m_f4))
-				inputValid = true;
 				std::cout << "Computer plays 4." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '5':
+			case 5:
 				if (modifyBoard(m_player, m_f4 + m_adjacentdif))
-				inputValid = true;
 				std::cout << "Computer plays 5." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '6':
+			case 6:
 				if (modifyBoard(m_player, m_f4 + (m_adjacentdif * 2)))
-				inputValid = true;
 				std::cout << "Computer plays 6." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '7':
+			case 7:
 				if (modifyBoard(m_player, m_f7))
-				inputValid = true;
 				std::cout << "Computer plays 7." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '8':
+			case 8:
 				if (modifyBoard(m_player, m_f7 + m_adjacentdif))
-				inputValid = true;
 				std::cout << "Computer plays 8." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			case '9':
+			case 9:
 				if (modifyBoard(m_player, m_f7 + (m_adjacentdif * 2)))
-				inputValid = true;
 				std::cout << "Computer plays 9." << std::endl;
+				else {
+					computerChoice = (rand() % 9) + 1;
+					goto Check;
+				}
 			break;
 
-			default:
-				std::cerr << "Invalid option" << std::endl;
-				inputValid = false;
+			default: //AI wont make input errors
 			break;
-		} while (!inputValid);
+		}
+		delayTimer(1000);
 }
 
 
