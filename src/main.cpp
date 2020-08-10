@@ -8,6 +8,7 @@
 #include "Game.h"
 
 int main() {
+
 	Game tictac; //creating Game object
 	int numOfMoves{ 0 };
 
@@ -17,7 +18,6 @@ int main() {
 		tictac.displayBoard();
 		tictac.finalCheck(numOfMoves);
 		tictac.playerToggle();
-
 		tictac.computerTurn();
 		numOfMoves++;
 		tictac.displayBoard();

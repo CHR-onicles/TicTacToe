@@ -4,6 +4,7 @@ class Game {
 private:
 	//member variables with "m_" prefix
 	char m_player;
+	
 
 	//locations of fields(in bytes) in game board
 	//in order to access them directly and
@@ -19,6 +20,8 @@ public:
 	Game();
 	~Game();
 
+	static int numOfTimesRan; //number of times the program is run; to prevent displaying splash screen again
+
 	//methods
 	void displayBoard();
 	void userInput();
@@ -27,6 +30,7 @@ public:
 	char checkForWinner();
 	void computerTurn();
 	void finalCheck(int numOfMoves);
+	void playAgain();
 
 	//Utilities
 	void delayTimer(int durationInMillisecs);
