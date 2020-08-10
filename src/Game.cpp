@@ -13,7 +13,7 @@
 
 /*===================================================
 *Function: cls()
-*Description: To clear the screen based on platform
+*Description: Clear the screen based on platform
 ===================================================*/
 #if defined (__linux__) || defined (__unix__)
 void Game::cls() {
@@ -36,28 +36,28 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	system("color 0b");
 #endif // _WIN32
 
-	srand(time(NULL));
-	//delayTimer(5000);
-	//std::ifstream ifs{ "Splash.txt" };
-	//if (!ifs) {
-	//	std::cerr << "Error loading Splash Screen." << std::endl;
-	//	return;
-	//}
-	//std::string line;
-	//std::cout << "\n\n\n\n\n\n\n\n";
+	srand(time(NULL)); //seeding random value
+	delayTimer(5000);
+	std::ifstream ifs{ "Splash.txt" };
+	if (!ifs) {
+		std::cerr << "Error loading Splash Screen." << std::endl;
+		return;
+	}
+	std::string line;
+	std::cout << "\n\n\n\n\n\n\n\n";
 
-	//while (std::getline(ifs, line)) {
-	//	delayTimer(155);
-	//	std::cout << "\t\t\t\t" << line << std::endl;
-	//}
-	//delayTimer(2000);
+	while (std::getline(ifs, line)) {
+		delayTimer(155);
+		std::cout << "\t\t\t\t" << line << std::endl;
+	}
+	delayTimer(2000);
 
-	////SetConsoleOutputCP(1252); //to show copyright symbol correctly
-	//std::cout << "\n\t\t\t\t" << "Powered by CHR-onicles" << std::endl;
-	//delayTimer(5000);
-	//ifs.close();
+	//SetConsoleOutputCP(1252); //to show copyright symbol correctly
+	std::cout << "\n\t\t\t\t" << "Powered by CHR-onicles" << std::endl;
+	delayTimer(5000);
+	ifs.close();
 
-	////showcase all boards
+	//showcase all boards
 	cls();
 	char read{};
 	bool valid{ false };
@@ -71,9 +71,9 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 			std::cout << read;
 		}
 		std::cout << "\n\n\n";
-		//delayTimer(3000);
+		delayTimer(3000);
 	}
-	//ifs.close();
+	ifs.close();
 
 	do {
 		std::cout << "\n\nWhich would you like to play with? [1/2/3/4/5/6]: ";
@@ -113,7 +113,7 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 			}
 
 			//Game board done displaying
-			std::cout << "\n\tPlayer 1: 'X'" << std::endl;
+			std::cout << "\n\tPlayer 1: 'X' plays first" << std::endl;
 			std::cout << "\tComputer: 'O'" << std::endl;
 
 			ifs2.close();
@@ -334,7 +334,7 @@ void Game::computerTurn() {
 				}
 			break;
 
-			default: //AI wont make input errors
+			default: //Computer won't make input errors
 			break;
 		}
 		delayTimer(1000);
@@ -375,7 +375,8 @@ bool Game::modifyBoard(char player, long long location) {
 		return true;
 	}
 	else if (isalpha(read1)) {
-		std::cerr << "The field is already occupied" << std::endl;
+		if(player == 'X') //show this message to only players
+			std::cerr << "The field is already occupied" << std::endl;
 		fs.close();
 		return false;
 	}
@@ -481,4 +482,25 @@ char Game::checkForWinner() {
 
 	//else its a draw
 	return 'd';
+}
+
+/*===================================================
+*Function: finalCheck()
+*Description: Checks gameboard if there's a winner or
+			  a draw and displays winning message
+			  accordingly.
+===================================================*/
+void Game::finalCheck(int numOfMoves) {
+	if (checkForWinner() == 'X') {
+		std::cout << "\nGAME OVER! Player 1 wins!!" << std::endl;
+		std::exit(10);
+	}
+	else if (checkForWinner() == 'O') {
+		std::cout << "\nGAME OVER! Computer wins!!" << std::endl;
+		std::exit(11);
+	}
+	else if (checkForWinner() == 'd' && numOfMoves == 9) {
+		std::cout << "\nGAME OVER! It's a DRAW." << std::endl;
+		std::exit(12);
+	}
 }

@@ -15,35 +15,13 @@ int main() {
 		tictac.userInput();
 		numOfMoves++;
 		tictac.displayBoard();
-		
-		if (tictac.checkForWinner() == 'X') {
-			std::cout << "\nGAME OVER! Player 1 wins!!" << std::endl;
-			break;
-		}
-		else if (tictac.checkForWinner() == 'O') {
-			std::cout << "\nGAME OVER! Computer wins!!" << std::endl;
-			break;
-		}
-		else if (tictac.checkForWinner() == 'd' && numOfMoves == 9) {
-			std::cout << "\nGAME OVER! It's a DRAW." << std::endl;
-			break;
-		}
+		tictac.finalCheck(numOfMoves);
 		tictac.playerToggle();
+
 		tictac.computerTurn();
 		numOfMoves++;
 		tictac.displayBoard();
-		if (tictac.checkForWinner() == 'X') {
-			std::cout << "\nGAME OVER! Player 1 wins!!" << std::endl;
-			break;
-		}
-		else if (tictac.checkForWinner() == 'O') {
-			std::cout << "\nGAME OVER! Computer wins!!" << std::endl;
-			break;
-		}
-		else if (tictac.checkForWinner() == 'd' && numOfMoves == 9) {
-			std::cout << "\nGAME OVER! It's a DRAW." << std::endl;
-			break;
-		}
+		tictac.finalCheck(numOfMoves);
 		tictac.playerToggle();
 		
 	} while (numOfMoves != 10);
