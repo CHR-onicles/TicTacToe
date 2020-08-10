@@ -58,21 +58,21 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	//ifs.close();
 
 	////showcase all boards
-	//cls();
+	cls();
 	char read{};
 	bool valid{ false };
 	int choice{};
 	std::string boardnames[] = { "board1.txt","board2.txt","board3.txt","board4.txt","board5.txt","board6.txt" };
-	//std::cout << "\tMake a choice from custom game board designs:\n\n" << std::endl;
-	//delayTimer(3000);
-	//for (gsl::index i{ 0 }; i <= 5; ++i) {
-	//	std::ifstream ifs{ boardnames[i].c_str() };
-	//	while (ifs.get(read)) {
-	//		std::cout << read;
-	//	}
-	//	std::cout << "\n\n\n";
-	//	delayTimer(3000);
-	//}
+	std::cout << "\tMake a choice from custom game board designs:\n\n" << std::endl;
+	delayTimer(3000);
+	for (gsl::index i{ 0 }; i <= 5; ++i) {
+		std::ifstream ifs{ boardnames[i].c_str() };
+		while (ifs.get(read)) {
+			std::cout << read;
+		}
+		std::cout << "\n\n\n";
+		delayTimer(3000);
+	}
 	//ifs.close();
 
 	do {
@@ -114,7 +114,7 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 
 			//Game board done displaying
 			std::cout << "\n\tPlayer 1: 'X'" << std::endl;
-			std::cout << "\tPlayer 2: 'O'" << std::endl;
+			std::cout << "\tComputer: 'O'" << std::endl;
 
 			ifs2.close();
 			ipt.close();
@@ -175,7 +175,6 @@ void Game::displayBoard() {
 ===================================================*/
 void Game::userInput() {
 	char input{};
-
 	bool inputValid{ false };
 	do {
 		std::cout << "\nPlayer: " << m_player << ", Enter the number of the field to be occupied: ";

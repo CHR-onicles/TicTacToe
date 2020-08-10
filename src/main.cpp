@@ -22,7 +22,7 @@ int main() {
 			break;
 		}
 		else if (tictac.checkForWinner() == 'O') {
-			std::cout << "\nGAME OVER! Player O wins!!" << std::endl;
+			std::cout << "\nGAME OVER! Computer wins!!" << std::endl;
 			break;
 		}
 		else if (tictac.checkForWinner() == 'd' && numOfMoves == 9) {
