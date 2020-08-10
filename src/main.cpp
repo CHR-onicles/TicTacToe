@@ -1,7 +1,7 @@
 /*****************************************
 *Author: CHR-onicles
 *Date: 10/06/2020 00:30GMT
-*Last updated: 10/07/2020 16:05GMT
+*Last updated: 10/08/2020 21:00GMT
 *****************************************/
 
 #include <iostream>
@@ -13,6 +13,7 @@ int main() {
 
 	do {
 		tictac.userInput();
+		tictac.computerTurn();
 		tictac.displayBoard();
 		numOfMoves++;
 		if (tictac.checkForWinner() == 'X') {

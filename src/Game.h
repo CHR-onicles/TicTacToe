@@ -25,6 +25,7 @@ public:
 	void playerToggle();
 	bool modifyBoard(char player, long long location);
 	char checkForWinner();
+	void computerTurn();
 
 	//Utilities
 	void delayTimer(int durationInMillisecs);
