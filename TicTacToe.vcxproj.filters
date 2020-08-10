@@ -30,6 +30,7 @@
     <Text Include="src\board3.txt" />
     <Text Include="src\board4.txt" />
     <Text Include="src\board2.txt" />
+    <Text Include="src\board1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">

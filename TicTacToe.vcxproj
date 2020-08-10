@@ -151,6 +151,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="src\board1.txt" />
     <Text Include="src\board2.txt" />
     <Text Include="src\board3.txt" />
     <Text Include="src\board4.txt" />

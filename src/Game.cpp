@@ -59,10 +59,10 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	char read{};
 	bool valid{ false };
 	int choice{};
-	std::string boardnames[] = { "board2.txt","board3.txt","board4.txt","board5.txt","board6.txt" };
+	std::string boardnames[] = { "board1.txt","board2.txt","board3.txt","board4.txt","board5.txt","board6.txt" };
 	std::cout << "\tMake a choice from custom game board designs:\n\n" << std::endl;
 	delayTimer(3000);
-	for (gsl::index i{ 0 }; i <= 4; ++i) {
+	for (gsl::index i{ 0 }; i <= 5; ++i) {
 		std::ifstream ifs{ boardnames[i].c_str() };
 		while (ifs.get(read)) {
 			std::cout << read;
@@ -73,9 +73,9 @@ Game::Game() :m_player{ 'X' }, m_f1{}, m_f4{}, m_f7{}, m_adjacentdif{}{
 	ifs.close();
 
 	do {
-		std::cout << "\n\nWhich would you like to play with? [1/2/3/4/5]: ";
+		std::cout << "\n\nWhich would you like to play with? [1/2/3/4/5/6]: ";
 		std::cin >> choice;
-		if (choice > 0 && choice < 6) {
+		if (choice > 0 && choice < 7) {
 			//display user chosen board
 			cls();
 			std::fstream ifs2{ boardnames[choice - 1].c_str(),std::ios::in | std::ios::out };
