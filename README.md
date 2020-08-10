@@ -23,4 +23,4 @@ that location.
 <img src = "images/TicTacToe_on_Kali.jpg" width = 700>
 
 ## POSSIBLE UPDATES
-- Let players play multiple times without exiting(and add win ratio and stuff)
+- Let players play multiple times without exiting.
